@@ -1,0 +1,6 @@
+logging:
+  level:
+    org.apache.coyote.http11.Http11InputBuffer: TRACE # Incoming request
+spring:
+  jackson:
+    default-property-inclusion: non_null # Exclude null fields from JSON response
