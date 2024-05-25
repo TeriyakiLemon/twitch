@@ -12,12 +12,11 @@ public class HelloController {
 
 
     @GetMapping("/hello")
-    public Person sayHello(@RequestParam(required = false) String locale) {
-        if (locale == null){
-            locale = "en_us";
+    public Person sayHello(@RequestParam(required = false) String name) {
+        Faker faker = new Faker();
+        if (name == null) {
+            name = "Guest";
         }
-        Faker faker = new Faker(new Locale(locale));
-        String name = faker.name().fullName();
         String company = faker.company().name();
         String street = faker.address().streetAddress();
         String city = faker.address().city();
@@ -27,9 +26,10 @@ public class HelloController {
         return new Person(
                 name,
                 company,
-                new Address(street, city, state, null),
+                new Address(street, city, state, "US"),
                 new Book(bookTitle, bookAuthor)
         );
     }
+
 }
 
